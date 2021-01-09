@@ -14,3 +14,17 @@ describe("absolute", () => {
     expect(result).toBe(0);
   });
 });
+
+describe("greet", () => {
+  it("should return greeting message", () => {
+    const result = lib.greet("kapil");
+    expect(result).toBe("Welcome kapil");
+  });
+});
+
+describe("getCurrencies", () => {
+  it("should return supported currency", () => {
+    const result = lib.getCurrencies();
+    expect(result).toEqual(expect.arrayContaining(["USD", "AUD", "EUR"]));
+  });
+});
