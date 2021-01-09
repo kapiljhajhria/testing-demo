@@ -28,3 +28,10 @@ describe("getCurrencies", () => {
     expect(result).toEqual(expect.arrayContaining(["USD", "AUD", "EUR"]));
   });
 });
+
+describe("getProduct", () => {
+  it("should return product with given id", () => {
+    const result = lib.getProduct(1);
+    expect(result).toEqual({ id: 1, price: 10 });
+  });
+});
