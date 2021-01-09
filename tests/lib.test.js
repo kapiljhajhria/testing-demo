@@ -45,4 +45,11 @@ describe("registerUSer", () => {
     });
     expect(() => lib.registerUser(null)).toThrow();
   });
+
+  it("should return object if valid username is passed", () => {
+    //null,undefined,Nan,"",0,false
+    const result = lib.registerUser("kapil");
+    expect(result).toMatchObject({ username: "kapil" });
+    expect(result.id).toBeGreaterThan(0);
+  });
 });
