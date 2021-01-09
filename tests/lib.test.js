@@ -1,4 +1,5 @@
 const lib = require("../lib");
+const db = require("../db");
 
 describe("absolute", () => {
   test("positive input, return postive number", () => {
@@ -51,5 +52,25 @@ describe("registerUSer", () => {
     const result = lib.registerUser("kapil");
     expect(result).toMatchObject({ username: "kapil" });
     expect(result.id).toBeGreaterThan(0);
+  });
+});
+
+describe("applyDiscount", () => {
+  it("apply 10% discount if customer has more than 10 points", () => {
+    db.getCustomerSync = function (customerId) {
+      return { id: customerId, points: 11 };
+    };
+    const order = { customerId: 1, totalPrice: 10 };
+    const result = lib.applyDiscount(order);
+    expect(order.totalPrice).toBe(9);
+  });
+
+  it("apply no discount if customer has less than 10 points", () => {
+    db.getCustomerSync = function (customerId) {
+      return { id: customerId, points: 9 };
+    };
+    const order = { customerId: 1, totalPrice: 10 };
+    const result = lib.applyDiscount(order);
+    expect(order.totalPrice).toBe(10);
   });
 });
