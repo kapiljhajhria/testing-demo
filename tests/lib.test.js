@@ -35,3 +35,10 @@ describe("getProduct", () => {
     expect(result).toEqual({ id: 1, price: 10 });
   });
 });
+
+describe("registerUSer", () => {
+  it("should throw if username is falsy", () => {
+    //null,undefined,Nan,"",0,false
+    expect(() => lib.registerUser(null)).toThrow();
+  });
+});
