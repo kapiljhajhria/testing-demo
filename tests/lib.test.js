@@ -79,23 +79,13 @@ describe("applyDiscount", () => {
 describe("notifyCustomer", () => {
   it("should send email to customer", () => {
     const mockFunction = jest.fn();
-    // mockFunction.mockReturnValue(1);
-    // mockFunction.mockResolvedValue(1)//for async function
-    // mockFunction.mockRejectedValue(new Error('error occured'))//to give error
-
-    // const result = await mockFunction();
 
     db.getCustomerSync = jest.fn().mockReturnValue({ email: "test@email.com" });
-    // db.getCustomerSync = function (customerId) {
-    //   return { email: "test@email.com" };
-    // };
+
     mail.send = jest.fn();
-    // let mailSent = false;
-    // mail.send = function (email, message) {
-    //   mailSent = true;
-    // };
+
     lib.notifyCustomer({ customnerId: 1 });
-    // expect(mailSent).toBe(true);
+
     expect(mail.send).toHaveBeenCalled();
   });
 });
