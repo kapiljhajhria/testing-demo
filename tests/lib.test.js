@@ -87,5 +87,9 @@ describe("notifyCustomer", () => {
     lib.notifyCustomer({ customnerId: 1 });
 
     expect(mail.send).toHaveBeenCalled();
+    //to check arguments passed to mail.send , should be an email and a message that
+    //contains 'order' in it
+    expect(mail.send.mock.calls[0][0]).toBe("test@email.com");
+    expect(mail.send.mock.calls[0][1]).toBe(/order/);
   });
 });
